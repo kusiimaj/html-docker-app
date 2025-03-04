@@ -8,11 +8,13 @@ WORKDIR /app
 COPY . /app
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000
+# Set environment variable to prevent buffering
+ENV PYTHONUNBUFFERED=1
+
+# Expose port 5000 to allow external connections
 EXPOSE 5000
 
 # Run the application
 CMD ["python", "app.py"]
-
